@@ -1,0 +1,10 @@
+{% extends './base.html' %}
+
+{% block extends %}
+
+<div class="my-class">
+
+	<div class="alert alert-danger info" role="alert">{{mensagem}} Clique aqui para voltar a <a href="{% url 'jogo:minhas-partidas' request.user.pk %}">página inicial do seu perfil.</a></div>
+
+</div>
+{% endblock %}

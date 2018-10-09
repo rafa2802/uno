@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Uno - Perfil do Usuário {{request.user.first_name}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'perfil/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'perfil/css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'perfil/css/bootstrap.css' %}">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'perfil/css/flexslider.css' %}">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'perfil/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'perfil/css/owl.theme.default.min.css' %}">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'perfil/css/style.css' %}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'perfil/js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'perfil/js/respond.min.js' %}"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	</head>
+	<body>
+	<div id="colorlib-page">
+		<div class="container-wrap">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+			<div class="text-center">
+				<div class="author-img" style="background-image: url({% static 'perfil/images/default-user.png' %});"></div>
+				<h1 id="colorlib-logo"><a href="{% url 'jogo:minhas-partidas' request.user.pk %}">{{request.user.first_name}}</a></h1>
+			</div>
+			<nav id="colorlib-main-menu" role="navigation" class="navbar">
+				<div class="collapse">
+					<ul>
+						<li><a href="{% url 'jogo:home' %}">Home</a></li>
+						<li><a href="{% url 'jogo:minhas-partidas' request.user.pk %}">Minhas Partidas</a></li>
+						<li><a href="{% url 'jogo:partidas-disponiveis' request.user.pk %}">Partidas Disponíveis</a></li>
+						<li><a href="{% url 'jogo:regras' %}">Regras</a></li>
+						<li><a href="{% url 'jogo:sobre' %}">Sobre</a></li>
+						<li><a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="colorlib-footer">
+				<p><small><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; <script>document.write(new Date().getFullYear());</script> RafaSolution | Este template foi feito com &#9829; por <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </small>
+				<img src="https://vignette.wikia.nocookie.net/logopedia/images/c/c1/UNO_Logo_PR_Announcement_20160719_4pm_CET_1468855694.png" alt="logo uno">
+			</div>
+
+		</aside>
+
+		<div id="colorlib-main">
+
+			{% block extends %}
+
+			{% endblock %}
+
+		</div>
+	</div><!-- end:container-wrap -->
+	</div><!-- end:colorlib-page -->
+</small>
+</p></div></aside></div></div>
+
+	<!-- jQuery -->
+	<script src="{% static 'perfil/js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'perfil/js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'perfil/js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'perfil/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'perfil/js/jquery.flexslider-min.js' %}"></script>
+	<!-- Owl carousel -->
+	<script src="{% static 'perfil/js/owl.carousel.min.js' %}"></script>
+	<!-- Counters -->
+	<script src="{% static 'perfil/js/jquery.countTo.js' %}"></script>
+	
+	
+	<!-- MAIN JS -->
+	<script src="{% static 'perfil/js/main.js' %}"></script>
+
+	</body>
+</html>
+

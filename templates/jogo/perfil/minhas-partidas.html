@@ -1,0 +1,76 @@
+{% extends './base.html' %}
+
+{% block extends %}
+
+<div class="my-class">
+
+	<div class="modal fade" id="ModalGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h5 class="modal-title" id="exampleModalLabel">Criação de Partida</h5>
+	    </div>
+	    <div class="modal-body">
+	      <div class="alert alert-danger" role="alert">
+	        Informe abaixo quantas pessoas participaram dessa partida!
+	      </div>
+	      <form method="post" action="{% url 'jogo:criar-partida' %}">
+			<select class="form-control" name="jogadores">
+			  <option value="2">2</option>
+			  <option value="3">3</option>
+			  <option value="4">4</option>
+			</select>
+	    </div>
+	        {% csrf_token %}
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+	          <button type="submit" class="btn btn-success">Confirmar</button>
+	        </div>
+	      </form>
+	  </div>
+	</div>
+	</div>
+
+	<div class="alert alert-info info" role="alert">Aqui você encontra as partidas criadas por você e as que você já participou ou está participando!</div>
+
+	<div class="title">
+		<h2>Minhas Partidas</h2>
+	</div>
+
+	<div class="btn-new">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalGame"><i class="fas fa-plus"></i> Nova Partida</button>
+	</div>
+
+	{% if partidas|length > 0 %}
+	<div>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">ID Partida</th>
+		      <th scope="col">Quantidade de Jogadores</th>
+		      <th scope="col">Dono da Partida</th>
+		      <th scope="col">Status</th>
+		      <th scope="col">Ações</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for partida in partidas %}
+		    <tr>
+		      <th scope="row">{{partida.pk}}</th>
+		      <td>{{partida.jogadores.all|length}}/{{partida.qt_jogadores}}</td>
+		      <td>{{partida.usuario.first_name}}</td>
+		      <td>{% if partida.status == 0 %}Aguardando Jogadores{% elif partida.status == 1 %}Em Andamento{% else %}Concluída{% endif %}</td>
+		      <td>{% if partida.status == 2 %}{% else %}<a href="{% url 'jogo:jogar' partida.pk %}" title="Jogar" style="color: green;"><i class="fas fa-gamepad"></i></a>{% endif %}<a href="{% url 'jogo:excluir' partida.pk %}" title="Excluir" style="color: red; margin-left: 10px;"><i class="fas fa-trash-alt"></i></a></td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+	</div>
+	{% else %}
+	<div style="text-align: center;">
+		<h3 style="color: white; margin-top: 15%;">O usuário ainda não criou ou não está participando de nenhuma partida!</h3>
+	</div>
+	{% endif %}
+
+</div>
+{% endblock %}

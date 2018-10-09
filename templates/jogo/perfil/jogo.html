@@ -1,0 +1,39 @@
+{% extends './base.html' %}
+{% load static %}
+{% block extends %}
+
+<div style="text-align: center;">
+{% for carta in deck.cartas.all %}
+	<img src="{% static 'perfil/images/UNO-Back.png' %}" width="40">
+{% endfor %}
+</div>
+
+{% if deck.partida.qt_jogadores == 4 %}
+<div>
+	{% for carta in deck.cartas.all %}
+	<div style="position: absolute; float: left;">
+		<img src="{% static 'perfil/images/UNO-Back.png' %}" width="40">
+	</div>
+	<div style="text-align: right;">
+		<img src="{% static 'perfil/images/UNO-Back.png' %}" width="40">
+	</div>
+	{% endfor %}
+</div>
+{% elif deck.partida.qt_jogadores == 3 %}
+<div>
+	{% for carta in deck.cartas.all %}
+	<div style="text-align: right;">
+		<img src="{% static 'perfil/images/UNO-Back.png' %}" width="40">
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+{% endif %}
+
+<div style="text-align: center;">
+{% for carta in deck.cartas.all %}
+	<img src="/media/{{carta.carta.carta}}" width="95">
+{% endfor %}
+</div>
+
+{% endblock %}

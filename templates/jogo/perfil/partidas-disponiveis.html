@@ -1,0 +1,45 @@
+{% extends './base.html' %}
+
+{% block extends %}
+
+<div class="my-class">
+
+	<div class="alert alert-info info" role="alert">Aqui você encontra as partidas disponíveis para você jogar!</div>
+
+	<div class="title">
+		<h2>Partidas Disponíveis</h2>
+	</div>
+
+	{% if partidas|length > 0 %}
+	<div>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">ID Partida</th>
+		      <th scope="col">Quantidade de Jogadores</th>
+		      <th scope="col">Dono da Partida</th>
+		      <th scope="col">Status</th>
+		      <th scope="col">Ações</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for partida in partidas %}
+		    <tr>
+		      <th scope="row">{{partida.pk}}</th>
+		      <td>{{partida.jogadores.all|length}}/{{partida.qt_jogadores}}</td>
+		      <td>{{partida.usuario.first_name}}</td>
+		      <td>Aguardando Jogadores</td>
+		      <td><a href="{% url 'jogo:entrar' partida.pk %}" title="Jogar" style="color: green;"><i class="fas fa-gamepad"></i></a></td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+	</div>
+	{% else %}
+	<div style="text-align: center;">
+		<h3 style="color: white; margin-top: 15%;">Nenhuma partida disponível no momento!</h3>
+	</div>
+	{% endif %}
+
+</div>
+{% endblock %}

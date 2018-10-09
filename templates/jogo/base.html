@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+    <!-- Title -->
+    <title>Uno</title>
+
+    <!-- Core Stylesheet -->
+    <link href="{% static 'home/style.css' %}" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'home/css/responsive.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+        <div class="colorlib-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area animated">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Menu Area Start -->
+                <div class="col-12 col-lg-8">
+                    <div class="menu_area">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <!-- Logo -->
+                            <a class="navbar-brand" href="{% url 'jogo:home' %}">uno</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <!-- Menu Area -->
+                            <div class="collapse navbar-collapse" id="ca-navbar">
+                                <ul class="navbar-nav ml-auto" id="nav">
+                                    <li class="nav-item active"><a class="nav-link" href="{% url 'jogo:home' %}">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'jogo:regras' %}">Regras</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'jogo:sobre' %}">Sobre</a></li>
+                                </ul>
+                                {% if request.user.is_authenticated %}
+                                <div class="sing-up-button d-lg-none">
+                                    <a href="{% url 'jogo:minhas-partidas' request.user.pk %}">Meu Perfil</a>
+                                </div>
+                                <div class="sing-up-button d-lg-none">
+                                    <a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                                </div>
+                                {% else %}
+                                <div class="sing-up-button d-lg-none">
+                                    <a href="{% url 'core:login' %}">Login</a>
+                                </div>
+                                <div class="sing-up-button d-lg-none">
+                                    <a href="{% url 'core:cadastro' %}">Cadastrar-se</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Signup btn -->
+                {% if request.user.is_authenticated %}
+                <div class="col-12 col-lg-2">
+                    <div class="sing-up-button d-none d-lg-block">
+                        <a href="{% url 'jogo:minhas-partidas' request.user.pk %}">Meu Perfil</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <div class="sing-up-button d-none d-lg-block">
+                        <a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-12 col-lg-2">
+                    <div class="sing-up-button d-none d-lg-block">
+                        <a href="{% url 'core:login' %}">Login</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <div class="sing-up-button d-none d-lg-block">
+                        <a href="{% url 'core:cadastro' %}">Cadastrar-se</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    {% block extends %}
+    {% endblock %}
+
+    <!-- ***** Footer Area Start ***** -->
+    <footer class="footer-social-icon text-center section_padding_70 clearfix">
+        <!-- footer logo -->
+        <div class="footer-text">
+            <img src="https://http2.mlstatic.com/jogo-de-cartas-baralho-uno-fast-original-lacrado-da-matel-D_NQ_NP_386011-MLB20448834864_102015-F.jpg" alt="logo uno">
+        </div>
+        <div class="footer-menu">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'jogo:regras' %}">Regras</a></li>
+                    <li><a href="{% url 'jogo:sobre' %}">Sobre o Jogo</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="#">Meu Perfil</a></li>
+                    <li><a href="{% url 'core:logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    {% else %}
+                    <li><a href="{% url 'core:login' %}">Login</a></li>
+                    <li><a href="{% url 'core:cadastro' %}">Cadastro</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <!-- Foooter Text-->
+        <div class="copyright-text">
+            <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
+            <p>Copyright ©2018 RafaSolution</p>
+        </div>
+    </footer>
+    <!-- ***** Footer Area Start ***** -->
+
+    <!-- Jquery-2.2.4 JS -->
+    <script src="{% static 'home/js/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'home/js/popper.min.js' %}"></script>
+    <!-- Bootstrap-4 Beta JS -->
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins JS -->
+    <script src="{% static 'home/js/plugins.js' %}"></script>
+    <!-- Slick Slider Js-->
+    <script src="{% static 'home/js/slick.min.js' %}"></script>
+    <!-- Footer Reveal JS -->
+    <script src="{% static 'home/js/footer-reveal.min.js' %}"></script>
+    <!-- Active JS -->
+    <script src="{% static 'home/js/active.js' %}"></script>
+</body>
+
+</html>
