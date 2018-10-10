@@ -32,7 +32,7 @@
 
 <div style="text-align: center;">
 {% for carta in deck.cartas.all %}
-	<img src="/media/{{carta.carta.carta}}" width="95">
+	<button class="btn btn-default"><img src="/media/{{carta.carta.carta}}" width="95"></button>
 {% endfor %}
 </div>
 
